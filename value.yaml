@@ -32,6 +32,7 @@ sidecars:
 
 imagePullSecrets: []
 
+
 ## Controller deployment variables
 
 controller:
