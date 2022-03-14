@@ -9,6 +9,7 @@ image:
   repository: amazon/aws-efs-csi-driver
   tag: "v1.3.5"
   pullPolicy: IfNotPresent
+  
 
 sidecars:
   livenessProbe:
@@ -93,7 +94,7 @@ node:
   dnsPolicy: ClusterFirst
   dnsConfig:
     {}
-    # Example config which uses the AWS nameservers
+    ## Example config which uses the AWS nameservers
     # dnsPolicy: "None"
     # dnsConfig:
     #   nameservers:
