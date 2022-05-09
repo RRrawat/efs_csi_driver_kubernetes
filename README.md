@@ -22,16 +22,3 @@ One of the advantages of using EFS is that it provides encryption in transit sup
 Encryption in transit is enabled by default in the master branch version of the driver. To disable it and mount volumes using plain NFSv4, set volumeAttributes field encryptInTransit to "false" in your persistent volume manifest. For an example manifest, see Encryption in Transit Example.
 
 Note Kubernetes version 1.13+ is required if you are using this feature in Kubernetes.
-
-Requirements
-Name	Version
-terraform	>= 0.13
-aws	>= 3.13, < 4.0
-helm	>= 1.0, < 3.0
-kubectl	>= 1.9.4
-kubernetes	>= 1.10.0, < 3.0.0
-Providers
-Name	Version
-helm	>= 1.0, < 3.0
-kubectl	>= 1.9.4
-kubernetes	>= 1.10.0, < 3.0.0
