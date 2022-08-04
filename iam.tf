@@ -40,9 +40,9 @@ data "aws_iam_policy_document" "efs_csi_driver" {
 }
 
 resource "aws_iam_policy" "efs_csi_driver" {
-  
+  #depends_on  = [var.mod_dependency]
   count       = var.enabled ? 1 : 0
-  name        = "${var.cluster_name}-efs-csi-driver"
+  name        = "${var.eks_cluster_id}-efs-csi-driver"
   path        = "/"
   description = "Policy for the EFS CSI driver"
 
@@ -66,7 +66,7 @@ data "aws_iam_policy_document" "efs_csi_driver_assume" {
       variable = "${replace(var.cluster_identity_oidc_issuer, "https://", "")}:sub"
 
       values = [
-        "system:serviceaccount:${var.namespace}:${var.service_account_name}",
+        "system:serviceaccount:${var.efs_csi_service_account_name}",
       ]
     }
 
@@ -76,9 +76,8 @@ data "aws_iam_policy_document" "efs_csi_driver_assume" {
 
 resource "aws_iam_role" "efs_csi_driver" {
   count              = var.enabled ? 1 : 0
-  name               = "${var.cluster_name}-efs-csi-driver"
+  name               = "${var.eks_cluster_id}-efs-csi-driver"
   assume_role_policy = data.aws_iam_policy_document.efs_csi_driver_assume[0].json
-  tags = module.tags.commontags
 }
 
 resource "aws_iam_role_policy_attachment" "efs_csi_driver" {
